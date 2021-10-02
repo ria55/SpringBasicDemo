@@ -17,7 +17,8 @@ public class DemoApplication {
 	private static List<String> list;
 
 	@Autowired
-	public DemoApplication(ServerHandler handler, @Qualifier("someStringList") List<String> list) {
+	public DemoApplication(ServerHandler handler,
+						   @Qualifier("someOtherList") List<String> list) {
 		DemoApplication.handler = handler;
 		DemoApplication.list = list;
 	}
@@ -25,8 +26,6 @@ public class DemoApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
 		handler.upload();
-		System.out.println();
-		System.out.println(list);
 	}
 
 }

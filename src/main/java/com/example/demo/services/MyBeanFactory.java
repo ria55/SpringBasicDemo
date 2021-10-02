@@ -1,5 +1,6 @@
 package com.example.demo.services;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
@@ -8,6 +9,13 @@ import java.util.List;
 
 @Component
 public class MyBeanFactory {
+
+    private ServerHandler handler;
+
+    @Autowired
+    public MyBeanFactory(ServerHandler handler) {
+        this.handler = handler;
+    }
 
     @Bean
     public List<String> someStringList() {

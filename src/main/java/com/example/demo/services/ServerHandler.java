@@ -1,12 +1,18 @@
 package com.example.demo.services;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
+import java.util.List;
+
+@Service
 public class ServerHandler {
 
-    @Value("${my.random.string}")
+    private List<String> list;
+
+    @Value("${jaj-mucus-hajjaj}")
     private String someString;
 
     @Value("${random}")
@@ -14,12 +20,17 @@ public class ServerHandler {
 
     public ServerHandler() {}
 
+    @Autowired
+    public ServerHandler(@Qualifier("someOtherList") List<String> list) {
+        this.list = list;
+    }
+
     public void doSomething() {
         System.out.println("I did something!");
     }
 
     public void upload() {
-        System.out.println(someString);
+        System.out.println(list.size());
         System.out.println("***");
         try {
             long s = Integer.parseInt(someLong);
